@@ -13149,7 +13149,7 @@ Basic schematic elements and footprints for 0603, 1206, and PTH resistors.</desc
 <wire x1="-853.44" y1="309.88" x2="-868.68" y2="309.88" width="0.1524" layer="91"/>
 <pinref part="D1" gate="G$1" pin="DI"/>
 <wire x1="-972.82" y1="368.3" x2="-853.44" y2="368.3" width="0.1524" layer="91"/>
-<label x="-955.04" y="375.92" size="1.778" layer="95"/>
+<label x="-955.04" y="370.84" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="5V" class="0">
