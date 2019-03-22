@@ -6,7 +6,7 @@ import time
 
 class LightSensor(object):
 
-    def __init__(self,gpio,pin):
+    def __init__(self,gpio,pin=14):
         self._gpio=gpio
         self._pin = pin
 
@@ -20,7 +20,7 @@ class LightSensor(object):
         self._count =0
 
 
-    def update(self):
+    def update(self): #Non-locking meassure method used from a 'game-loop' type of program or as a separate thread
         cnt = 0
         if self._count == 0:
             self._gpio.setup(self._pin, self._gpio.IN)
@@ -31,7 +31,17 @@ class LightSensor(object):
             else:                                               #signal high, stop and fetch counter, reset for new meassurement cycle
                 cnt = self._count + 1
                 self.initialize()
+        return cnt                                              #As long as cnt = 0 measure is still in progress
+
+
+    def measure(self): #Locking measure method that use a timer for the coundet and return when measure is done
+        cnt = 0
+        while (self._gpio.input(self._pin) == self._gpio.LOW):
+            cnt = self._count + 1
+            time.sleep(0.1)
         return cnt
+
+
 
 if __name__ == '__main__':
     import RPi.GPIO as GPIO
@@ -39,9 +49,18 @@ if __name__ == '__main__':
     print "Testcode for LightSensor"
     ls=LightSensor(GPIO, 14)
     ls.initialize()
+
     while True:
+        print "---------------------"
+        print "Non-Locking measure"
         print ls.update()
         time.sleep(0.1)
+
+        print "Locking measure"
+        print ls.measure()
+        print ""
+
+
 
 
 

@@ -4,7 +4,6 @@ import time
 class LedIndicator(object):
     def __init__(self, GPIO, controlpin):
         self._gpio = GPIO
-        #self._gpio.semode(self._gpio.BCM)
         self._pin = controlpin
         self._gpio.setup(self._pin,self._gpio.OUT, initial=0)
         self._lastActivate = time.time()

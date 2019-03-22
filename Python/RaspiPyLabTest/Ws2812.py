@@ -70,10 +70,7 @@ class Ws2812(object):
 
 
 if __name__ == '__main__':
-  #  import RPi.GPIO as GPIO
-    print "Testcode for BinaryDisplay"
-   # import RPi.GPIO as GPIO
-    #GPIO.setmode(GPIO.BOARD)
+    print "Testcode for Ws2812"
     bd= Ws2812()
     bd.initialize()
     bd.test()
