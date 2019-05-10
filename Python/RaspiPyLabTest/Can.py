@@ -3,6 +3,15 @@
 #https://harrisonsand.com/can-on-the-raspberry-pi/
 #pip install python-can
 
+
+# 3073.000799 1  18FF3E30x       Rx   d 8 FF FF FF FF FF FF FF FF  Length = 0 BitCount = 0 ID = 419380784x
+# 3073.001423 1  CFF7427x        Rx   d 8 FC FF F4 00 3F FF FF FF  Length = 0 BitCount = 0 ID = 218068007x
+# 3073.001458 2  CFF3127x        Rx   d 8 00 C0 00 C0 FF FF FF FF  Length = 0 BitCount = 0 ID = 218050855x
+# 3073.001488 6  4F0090Bx        Rx   d 8 FF FF FF 8F 7D D7 7D 7E  Length = 0 BitCount = 0 ID = 82839819x
+# 3073.001558 4  18FF3B27x       Rx   d 8 CC CC CC FF CC FF FF FF  Length = 0 BitCount = 0 ID = 419380007x
+# 3073.001705 1  CF02F11x        Rx   d 8 F1 FF FA FF FF FF FF FF  Length = 0 BitCount = 0 ID = 217067281x
+
+
 import sys
 sys.path.append('/usr/local/lib/python2.7/dist-packages')
 sys.path.append('/usr/local/lib/python2.7/sqlite3')
@@ -19,8 +28,9 @@ class Can(object):
 
 
 
-#    def ReadMsg(self):
-
+    def ReadMsg(self,bus):
+        for msg in bus:
+            print(msg)
 
 
 
@@ -44,6 +54,7 @@ if __name__ == '__main__':
                       is_extended_id=True)
 
     myCan.SendMsg(msg)
+
 
 
 
